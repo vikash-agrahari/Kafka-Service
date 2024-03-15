@@ -14,5 +14,10 @@ export const ENUM = {
     FEMALE: 1,
     MALE: 2,
     Other: 3
-  }
+  },
+
+  CHANNEL_TYPE: {
+    PUSH: 'PUSH',
+    EMAIL: 'EMAIL',
+  },
 };

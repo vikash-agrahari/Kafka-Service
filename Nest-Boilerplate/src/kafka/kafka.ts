@@ -1,8 +1,8 @@
-import appConfig from 'config/configuration';
 import { Kafka, Admin, KafkaConfig, ITopicConfig } from 'kafkajs';
-import { Config,KAFKA_CONFIG } from 'src/interfaces/kafka.config.interface';
+import { Config, KAFKA_CONFIG} from "../../src/interfaces/kafka.config.interface"
+import appConfig from 'config/configuration';
 
- class KafkaManager {
+export class KafkaManager {
     protected kafka: Kafka;
     private admin: Admin;
     constructor() {
@@ -35,7 +35,7 @@ import { Config,KAFKA_CONFIG } from 'src/interfaces/kafka.config.interface';
                 topics: ITopicConfig[];
             } = {
                 topics: Object.values(KAFKA_CONFIG.TOPICS).map(topic => ({
-                    topic: topic.topic || '',
+                    topic: topic.topic||"",
                     numPartitions: Number(topic.numPartitions),
                     replicationFactor: Number(topic.replicationFactor)
                 }))
@@ -65,6 +65,7 @@ import { Config,KAFKA_CONFIG } from 'src/interfaces/kafka.config.interface';
      */
     async connectToAdmin() {
         try {
+            console.log("inside try")
             await this.admin.connect();
             console.log("connection successfully")
         } catch (error) {
@@ -80,5 +81,3 @@ import { Config,KAFKA_CONFIG } from 'src/interfaces/kafka.config.interface';
         await this.admin.disconnect();
     }
 }
-
-export const KafkaService = new KafkaManager();

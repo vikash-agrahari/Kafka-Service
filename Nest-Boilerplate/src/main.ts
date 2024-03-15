@@ -8,7 +8,7 @@ import { AllExceptionsFilter } from './filters/exceptionFilter';
 import { LoggerMiddleware } from './middlewares/logging.middleware';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { Swagger } from './common/constant';
-import { KafkaService } from './kafka/kafka';
+import { consumer } from './kafka/consumer/consumer.service';
 
 async function bootstrap() {
   // Create the NestJS application
@@ -47,7 +47,7 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
 
   // Retrieve the HTTP port from the configuration or use a default value
-  const nestPort: number = configService.get<number>('PORT') || 8001;
+  const nestPort: number = configService.get<number>('PORT') || 8002;
 
   const config = new DocumentBuilder()
     .setTitle(Swagger.Title)
@@ -68,10 +68,7 @@ async function bootstrap() {
   SwaggerModule.setup(Swagger.Path, app, document);
 
   // start the kafka service
-  await KafkaService.connectToAdmin()
-  await KafkaService.createTopics()
-  await KafkaService.metadataOfTopics()
-  await KafkaService.disconnectFromAdmin();
+ await consumer.initiateConsumer();
 
   // Start the NestJS application
   await app.listen(nestPort);
