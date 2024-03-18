@@ -2,12 +2,12 @@ import { KAFKA_CONFIG } from "src/interfaces/kafka.config.interface";
 import {
   ConsumerOptions,
   IConsumer,
-} from "../../interfaces/kafka.interface"
+} from "../../../interfaces/kafka.interface"
 import { KafkaConsumer } from "./consumer.kafka";
 import { activityConsumer } from "src/consumer";
 import { KAFKA_CONSTANT } from "src/common/kafka.constant";
 
-class ConsumerService {
+export class ConsumerService {
   private readonly consumers: IConsumer[] = [];
 
   /**
@@ -75,4 +75,4 @@ class ConsumerService {
   }
 }
 
-export const consumer = new ConsumerService();
+

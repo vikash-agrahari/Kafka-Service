@@ -8,7 +8,7 @@ import { AllExceptionsFilter } from './filters/exceptionFilter';
 import { LoggerMiddleware } from './middlewares/logging.middleware';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { Swagger } from './common/constant';
-import { consumer } from './kafka/consumer/consumer.service';
+import { ConsumerService } from './providers/kafka/consumer/consumer.service';
 
 async function bootstrap() {
   // Create the NestJS application
@@ -68,7 +68,7 @@ async function bootstrap() {
   SwaggerModule.setup(Swagger.Path, app, document);
 
   // start the kafka service
-//  await consumer.initiateConsumer();
+//  await new ConsumerService().initiateConsumer();
 
   // Start the NestJS application
   await app.listen(nestPort);

@@ -1,5 +1,5 @@
 import { Kafka, Admin, KafkaConfig, ITopicConfig } from 'kafkajs';
-import { Config, KAFKA_CONFIG} from "../../src/interfaces/kafka.config.interface"
+import { Config, KAFKA_CONFIG} from "../../interfaces/kafka.config.interface"
 import appConfig from 'config/configuration';
 
 export class KafkaManager {
