@@ -5,6 +5,7 @@ import {
 } from "../../interfaces/kafka.interface"
 import { KafkaConsumer } from "./consumer.kafka";
 import { activityConsumer } from "src/consumer";
+import { KAFKA_CONSTANT } from "src/common/kafka.constant";
 
 class ConsumerService {
   private readonly consumers: IConsumer[] = [];
@@ -46,7 +47,7 @@ class ConsumerService {
    * @description Consumer for Specific Kafka Topic
    */
   async Consume_Data() {
-    const topicPartition = KAFKA_CONFIG.TOPICS.KAFKA_EVENTS.numPartitions ||'1';
+    const topicPartition = KAFKA_CONSTANT.KAFKA_PARTITION||'3' ;
     const data: ConsumerOptions = {
       topic: {
         topics: [KAFKA_CONFIG.TOPICS.KAFKA_EVENTS.topic || "default topic"],

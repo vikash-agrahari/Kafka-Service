@@ -68,7 +68,7 @@ async function bootstrap() {
   SwaggerModule.setup(Swagger.Path, app, document);
 
   // start the kafka service
- await consumer.initiateConsumer();
+//  await consumer.initiateConsumer();
 
   // Start the NestJS application
   await app.listen(nestPort);

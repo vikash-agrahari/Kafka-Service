@@ -19,7 +19,7 @@ export class KafkaManager {
         const broker = `${Config.KAFKA_HOST_1}:${Config.KAFKA_PORT_1}`;
 
         const creds: KafkaConfig = {
-            clientId: appConfig.env.KAFKA_CLIENT_ID,
+            clientId: 'KAFKA-CLIENT-ID',
             brokers: [broker],
             retry: {},
         };
